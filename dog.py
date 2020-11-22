@@ -8,3 +8,9 @@ class Dog:
     def bark(self):
         print("Woof!")
 
+    def sit(self):
+        print("*Sits Down*")
+    
+    def roll_over(self):
+        print("*rolls over*")
+
