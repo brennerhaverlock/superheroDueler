@@ -76,8 +76,8 @@ class Hero:
             enemy.take_damage(attacker.attack())
             attacker, enemy = enemy, attacker
         #After each attack, check if either the hero (self) or the opponent is alive
-        enemy.check_kills()
-        attacker.check_death()
+        enemy.add_kill()
+        attacker.add_death()
         #if one of them has died, print "HeroName won!" replacing HeroName with the name of the hero, and end the fight loop
         print(f"{enemy.name} won agains {attacker.name}!")
         return enemy, attacker
@@ -106,9 +106,9 @@ class Hero:
   # and are therefore alive, so return True
         return self.current_health > 0
     
-    def check_kills(self, num_kills=1):
+    def add_kill(self, num_kills=1):
         self.kills += num_kills
-    def check_death(self, num_deaths = 1):
+    def add_death(self, num_deaths = 1):
         self.deaths += num_deaths
 
 
@@ -192,10 +192,18 @@ class Hero:
 
 #Part5 
 
-if __name__ == "__main__":
-    # If you run this file from the terminal
-    # this block is executed.
-    hero = Hero("Wonder Woman")
-    weapon = Weapon("Lasso of Truth", 90)
-    hero.add_weapon(weapon)
-    print(hero.attack())
+# if __name__ == "__main__":
+#     # If you run this file from the terminal
+#     # this block is executed.
+#     hero = Hero("Wonder Woman")
+#     weapon = Weapon("Lasso of Truth", 90)
+#     hero.add_weapon(weapon)
+#     print(hero.attack())
+
+#Part 6
+
+def __init__(self, name, health=100):
+    # The code you have already written goes here.
+    # ...
+    self.deaths = 0
+    self.kills = 0

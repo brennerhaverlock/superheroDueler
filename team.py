@@ -1,3 +1,4 @@
+import random
 class Team:
     def __init__(self, name):
         ''' Initialize your team with its team name and an empty list of heroes
@@ -27,4 +28,37 @@ class Team:
 
     def add_hero(self, hero):
         self.heroes.append(hero)
+
+    def stats(self):
+        for hero in self.heroes:
+            kd = hero.kills / hero.deaths
+            print("{} Kill/Deaths:{}".format(hero.name,kd))
+    
+    def revive_heroes(self, health=100):
+        for hero in self.heroes:
+            hero.current_health = hero.starting_health
+
+    
+    def attack(self, other_team):
+        living_heroes = list()
+        living_opponents = list()
+
+        for hero in self.heroes:
+            living_heroes.append(hero)
+
+        for hero in other_team.heroes:
+            living_opponents.append(hero)
+
+        while len(living_heroes) > 0 and len(living_opponents)> 0:
+            #index of all the super heroes
+            player = random.randint(0, len(living_heroes)-1)
+            player2 = random.randint(0, len(living_opponents)-1)
+
+            living_heroes[player].fight(living_opponents[player2])
+            if not living_heroes[player].is_alive():
+                living_heroes.remove(player)
+            elif not living_opponents[player2].is_alive():
+                living_opponents.remove(player2)
+
+    
 
